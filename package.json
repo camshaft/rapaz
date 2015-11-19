@@ -1,0 +1,19 @@
+{
+  "name": "rapaz",
+  "version": "0.1.0",
+  "description": "modular tracking library",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test mocha"
+  },
+  "author": "Cameron Bytheway <bytheway.cameron@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "base64-encode": "https://github.com/ForbesLindesay/base64-encode/archive/2.0.2.tar.gz",
+    "imurmurhash": "^0.1.4",
+    "uuid": "^2.0.1"
+  }
+}
