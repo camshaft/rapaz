@@ -8,10 +8,11 @@ module.exports = function(opts) {
   var cookie_idx = cookie + '_idx';
   var ttl = opts.ttl || 30 * 60; // 30 minutes
   var id = store.get(cookie);
+  var idx = parseInt(store.get(cookie_idx) || '-1', 10);
 
   if (!id) {
     id = uuid();
-    var idx = parseInt(store.get(cookie_idx) || '-1', 10) + 1;
+    idx++;
     store.set(cookie, id, ttl);
     store.set(cookie_idx, idx);
   }

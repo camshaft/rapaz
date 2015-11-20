@@ -12,6 +12,10 @@ module.exports = function() {
       mimeType = mimeTypes[pluginMap[i]];
       features[i] = !!(mimeType && mimeType.enabledPlugin);
     }
+  } else {
+    for (var i in pluginMap) {
+      features[i] = false;
+    }
   }
 
   // Safari and Opera

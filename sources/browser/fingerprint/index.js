@@ -16,7 +16,7 @@ function hash(obj) {
 
     if (type == 'undefined') return;
 
-    if (node !== 'object' || node === null) {
+    if (type != 'object' || node === null) {
       state.hash(type);
       state.hash('' + node);
       return;

@@ -1,5 +1,6 @@
-var storage = require('./storage');
-
+var merge = require('../../merge');
 module.exports = function() {
-  return storage('localStorage');
+  return merge({
+    localStorage: require('../../../lib/browser/features/local-storage')
+  }, ['client', 'features'])
 };

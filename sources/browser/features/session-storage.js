@@ -1,5 +1,6 @@
-var storage = require('./storage');
-
+var merge = require('../../merge');
 module.exports = function() {
-  return storage('sessionStorage');
+  return merge({
+    sessionStorage: require('../../../lib/browser/features/session-storage')
+  }, ['client', 'features'])
 };

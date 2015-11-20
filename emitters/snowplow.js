@@ -1,4 +1,4 @@
-var encode = require('base64-encode');
+var encode = require('../lib/base64').encode;
 
 module.exports = function(opts) {
   var url = opts.url;
@@ -79,13 +79,7 @@ function dimensions(dims) {
 
 function jsonbase64(value) {
   if (!value) return undefined;
-  return base64escape(encode(JSON.stringify(value)));
-}
-
-function base64escape(str) {
-  return str.replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=/g, '');
+  return encode(JSON.stringify(value));
 }
 
 function toString(obj){

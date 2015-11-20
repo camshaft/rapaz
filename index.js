@@ -53,7 +53,7 @@ var prototype = {
      */
 
     self.t(method, {data: data}, function(err, data) {
-      if (err) console.error(err.stack || err);
+      if (err) return console.error(err.stack || err);
 
       if (data) self._e.forEach(function(emitter) {
         emitter(method, data);
