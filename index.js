@@ -23,7 +23,7 @@ var prototype = {
 
   use: function() {
     var self = this;
-    self._s.push.apply(self._s, arguments);
+    push(arguments, self._s);
     return self;
   },
 
@@ -33,7 +33,7 @@ var prototype = {
 
   on: function() {
     var self = this;
-    self._e.push.apply(self._e, arguments);
+    push(arguments, self._e);
     return self;
   },
 
@@ -87,4 +87,16 @@ function transform(method, sources, i, done, err, data) {
   return source.length === 2 ?
     fn(null, source(method, data)) :
     source(method, data, fn);
+}
+
+/**
+ * Push arguments onto a target array
+ */
+
+function push(args, target) {
+  for (var i = 0, a; i < args.length; i++) {
+    a = args[i];
+    if (Array.isArray(a)) target.push.apply(target, a);
+    else target.push(a);
+  };
 }

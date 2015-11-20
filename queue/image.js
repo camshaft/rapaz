@@ -1,7 +1,8 @@
 module.exports = ImageQueue;
 
-function ImageQueue(state, store) {
-  this._q = state ? JSON.parse(state) : [];
+function ImageQueue(store, key) {
+  this._k = key = key || 'imgq';
+  this._q = store ? JSON.parse(store.get(key) || '[]') : [];
   this._s = store ? store.set.bind(store) : function() {};
 }
 
@@ -25,7 +26,7 @@ ImageQueue.prototype = {
 
     img.onload = function() {
       q.shift();
-      self._s('imgq', JSON.stringify(q));
+      self._s(self._k, JSON.stringify(q));
       self.flush();
     };
 

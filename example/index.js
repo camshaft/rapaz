@@ -35,8 +35,8 @@ module.exports = require('..')()
     require('../sources/browser/features/plugins')(),
     require('../sources/browser/features/session-storage')(),
     require('../sources/browser/features/touch')(),
-    // require('../sources/browser/fingerprint/canvas')(),
-    // require('../sources/browser/fingerprint/webgl')(),
+    require('../sources/browser/fingerprint/canvas')(),
+    require('../sources/browser/fingerprint/webgl')(),
     require('../sources/browser/fingerprint')(),
     require('../sources/browser/user/domain')({
       store: store
