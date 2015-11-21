@@ -47,17 +47,17 @@ function toJSON(method, data, contexts) {
     page: document.title,
     refr: document.referrer,
     fp: client.fingerprint,
-    cookie: features.cookie,
+    cookie: bool(features.cookie),
     lang: (client.languages || [])[0],
-    f_pdf: features.pdf,
-    f_qt: features.quicktime,
-    f_realp: features.realplayer,
-    f_wma: features.wma,
-    f_dir: features.director,
-    f_fla: features.flash,
-    f_java: features.java,
-    f_gears: features.gears,
-    f_ag: features.silverlight,
+    f_pdf: bool(features.pdf),
+    f_qt: bool(features.quicktime),
+    f_realp: bool(features.realplayer),
+    f_wma: bool(features.wma),
+    f_dir: bool(features.director),
+    f_fla: bool(features.flash),
+    f_java: bool(features.java),
+    f_gears: bool(features.gears),
+    f_ag: bool(features.silverlight),
     cd: client.colorDepth,
     ds: dimensions(document.size),
     cs: document.charset,
@@ -78,6 +78,10 @@ function eventType(method) {
 
 function dimensions(dims) {
   return Array.isArray(dims) ? dims.join('x') : undefined;
+}
+
+function bool(value) {
+  return value ? '1' : '0';
 }
 
 function jsonbase64(value) {
