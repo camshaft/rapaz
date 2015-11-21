@@ -5,7 +5,9 @@ module.exports = function(opts) {
   var queue = opts.queue;
 
   return function(method, data, contexts) {
-    queue.push(url + '?' + toString(toJSON(method, data, contexts)));
+    var obj = toJSON(method, data, contexts);
+    if (obj.e) queue.push(url + '?' + toString(obj));
+    else console.error('Undefined method for snowplow tracker: ' + JSON.stringify(method));
   };
 }
 
@@ -67,10 +69,11 @@ function toJSON(method, data, contexts) {
 }
 
 function eventType(method) {
-  if (method === 'track') return 'ue';
-  if (method === 'unstruct_event') return 'ue';
-  if (method === 'page_view') return 'pv';
-  return method;
+  return ({
+    track: 'ue',
+    trackUnstructEvent: 'ue',
+    trackPageView: 'pv'
+  })[method];
 }
 
 function dimensions(dims) {
