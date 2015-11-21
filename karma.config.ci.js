@@ -38,8 +38,7 @@ module.exports = function(config) {
 
   config.set({
     sauceLabs: {
-      testName: 'camshaft/rapaz',
-      startConnect: true
+      testName: 'camshaft/rapaz'
     },
 
     reporters: ['dots', 'saucelabs'],
