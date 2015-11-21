@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "NODE_ENV=test mocha"
+    "ci": "./node_modules/.bin/karma start karma.config.ci.js",
+    "test": "./node_modules/.bin/karma start karma.config.local.js"
   },
   "author": "Cameron Bytheway <bytheway.cameron@gmail.com>",
   "license": "MIT",
@@ -23,8 +24,9 @@
     "karma-mocha": "^0.2.1",
     "karma-phantomjs-launcher": "^0.2.1",
     "karma-safari-launcher": "^0.1.1",
-    "karma-webpack": "^1.7.0",
+    "karma-sauce-launcher": "^0.3.0",
     "karma-should": "^1.0.0",
+    "karma-webpack": "^1.7.0",
     "mocha": "^2.3.4",
     "phantomjs": "^1.9.18",
     "phantomjs-polyfill": "0.0.1",
