@@ -16,7 +16,7 @@ CookieStore.prototype = {
     }
   },
   set: function(key, value, ttl) {
-    document.cookie = key + '=' + value + '; expires=' + (new Date(+new Date + ((typeof ttl === 'undefined' ? 63244800 : ttl) * 1000))).toUTCString();
+    document.cookie = key + '=' + value + '; path=/; expires=' + (new Date(+new Date + ((typeof ttl === 'undefined' ? 63244800 : ttl) * 1000))).toUTCString();
   },
   isEnabled: require('../lib/browser/features/cookies')
 };
