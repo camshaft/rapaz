@@ -45,7 +45,7 @@ var prototype = {
    * Send an event
    */
 
-  e: function(method, data) {
+  e: function(method, data, contexts) {
     var self = this;
 
     /**
@@ -56,7 +56,7 @@ var prototype = {
       if (err) return console.error(err.stack || err);
 
       if (data) self._e.forEach(function(emitter) {
-        emitter(method, data);
+        emitter(method, data, contexts);
       });
     });
 
