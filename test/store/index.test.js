@@ -31,8 +31,7 @@ function helper(store, done) {
   should.be.ok(store.get('foo') == undefined);
   store.set('foo', 'bar');
   store.get('foo').should.eql('bar');
-  store.set('foo', 'baz', 0);
-  store.get('foo').should.eql('baz');
+  store.set('foo', 'baz', -1);
   setTimeout(function() {
     should.be.ok(store.get('foo') == undefined);
     done();
