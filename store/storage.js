@@ -3,14 +3,13 @@ var encode = require('../lib/base64').encode;
 
 module.exports = Storage;
 
-function Storage(obj, isEnabled, opts) {
+function Storage(obj, opts) {
   opts = opts || {};
-  this.isEnabled = isEnabled;
   this.o = obj;
   this.p = opts.prefix || '';
 }
 
-Storage.prototype = {
+var p = Storage.prototype = {
   get: function(key) {
     var obj = this.o;
     key = this.key(key);
@@ -28,6 +27,13 @@ Storage.prototype = {
   key: function(key) {
     return '_' + encode(imurmurhash(this.p).hash(key).result());
   }
+};
+
+Storage.extend = function(c, proto) {
+  proto = c.prototype = proto || {};
+  proto.get = p.get;
+  proto.set = p.set;
+  proto.key = p.key;
 };
 
 function now(seconds) {

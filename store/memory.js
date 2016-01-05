@@ -15,6 +15,8 @@ function MemoryStore(opts) {
     removeItem: function(key) {
       delete obj[key];
     }
-  }, true, opts);
+  }, opts);
 }
-MemoryStore.prototype = Storage.prototype;
+Storage.extend(MemoryStore, {
+  isEnabled: true
+});

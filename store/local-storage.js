@@ -4,6 +4,8 @@ module.exports = LocalStorageStore;
 
 function LocalStorageStore(opts) {
   this.name = 'localStorage';
-  Storage.call(this, localStorage, require('../lib/browser/features/local-storage'), opts);
+  Storage.call(this, localStorage, opts);
 }
-LocalStorageStore.prototype = Storage.prototype;
+Storage.extend(LocalStorageStore, {
+  isEnabled: require('../lib/browser/features/local-storage')
+});

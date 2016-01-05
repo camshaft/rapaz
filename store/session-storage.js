@@ -4,6 +4,8 @@ module.exports = SessionStorageStore;
 
 function SessionStorageStore(opts) {
   this.name = 'sessionStorage';
-  Storage.call(this, sessionStorage, require('../lib/browser/features/session-storage'), opts);
+  Storage.call(this, sessionStorage, opts);
 }
-SessionStorageStore.prototype = Storage.prototype;
+Storage.extend(SessionStorageStore, {
+  isEnabled: require('../lib/browser/features/session-storage')
+});
