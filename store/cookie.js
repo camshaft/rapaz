@@ -16,7 +16,16 @@ CookieStore.prototype = {
     }
   },
   set: function(key, value, ttl) {
-    document.cookie = key + '=' + value + '; path=/; expires=' + (new Date(+new Date + ((typeof ttl === 'undefined' ? 63244800 : ttl) * 1000))).toUTCString();
+    var date = (new Date(+new Date + ((typeof ttl === 'undefined' ? 63244800 : ttl) * 1000))).toUTCString();
+    var host = location.host;
+    var domainParts = host.split('.');
+    domainParts.shift();
+    var domain = '.' + domainParts.join('.');
+
+    console.log(domain);
+    var cookie = key + '=' + value + '; path=/; expires=' + date + '; domain=' + domain;
+    console.log(cookie);
+    document.cookie = cookie;
   },
   isEnabled: require('../lib/browser/features/cookies')
 };
