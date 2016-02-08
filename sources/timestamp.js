@@ -1,6 +1,6 @@
 module.exports = function() {
   return function(method, data) {
-    data.timestamp = new Date();
+    if (method === 'track') data.timestamp = new Date();
     return data;
   };
 };
