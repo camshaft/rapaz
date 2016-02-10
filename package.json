@@ -1,6 +1,6 @@
 {
   "name": "rapaz",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "modular tracking library",
   "main": "index.js",
   "directories": {
