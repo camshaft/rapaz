@@ -1,7 +1,7 @@
 module.exports = CookieStore;
 
 function CookieStore(domain) {
-  this.domain = domain;
+  this.domain = domain || undefined;
 }
 
 CookieStore.prototype = {
@@ -16,29 +16,25 @@ CookieStore.prototype = {
     }
   },
   set: function(key, value, ttl) {
-    if (!this.domain) return this._fetchDomain(key, value, ttl);
+    if (typeof this.domain === 'undefined') return this._fetchDomain(key, value, ttl);
     this._set(key, value, ttl);
   },
   _fetchDomain: function(key, value, ttl) {
     var hostname = location.hostname;
-    var parts = hostname.split('.').reverse();
+    var parts = hostname.split('.');
 
-    if (parts.length === 1) {
-      this.domain = hostname;
-      return this._set(key, value, ttl);
-    }
-
-    for (var i = 2; i < parts.length; i++) {
-      this.domain = '.' + parts.slice(0, i).reverse().join('.');
+    for (var i = parts.length - 2; i >= 1; i--) {
+      this.domain = '.' + parts.slice(i, parts.length).join('.');
       this._set(key, value, ttl);
       if (this.get(key) === value) return;
     }
-    this.domain = hostname;
+    this.domain = false;
     this._set(key, value, ttl);
   },
   _set: function(key, value, ttl) {
     var date = (new Date(+new Date + ((typeof ttl === 'undefined' ? 63244800 : ttl) * 1000))).toUTCString();
-    document.cookie = key + '=' + value + '; path=/; expires=' + date + '; domain=' + this.domain;
+    var domain = this.domain;
+    document.cookie = key + '=' + value + '; path=/; expires=' + date + (domain ? '; domain=' + domain : '');
   },
   isEnabled: require('../lib/browser/features/cookies')
 };
