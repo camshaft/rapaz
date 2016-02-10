@@ -23,7 +23,7 @@ CookieStore.prototype = {
     var hostname = location.hostname;
     var parts = hostname.split('.');
 
-    for (var i = parts.length - 2; i >= 1; i--) {
+    for (var i = parts.length - 2; i >= 0; i--) {
       this.domain = '.' + parts.slice(i, parts.length).join('.');
       this._set(key, value, ttl);
       if (this.get(key) === value) return;
