@@ -38,7 +38,9 @@ var prototype = {
   },
 
   set: function(obj) {
-    this.use(merge(obj));
+    var self = this;
+    self.use(merge(obj));
+    return self;
   },
 
   /**

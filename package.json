@@ -15,7 +15,7 @@
   "dependencies": {
     "imurmurhash": "^0.1.4",
     "utf8-encode": "^1.0.0",
-    "uuid": "^2.0.1"
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "karma": "^0.13.15",
