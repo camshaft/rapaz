@@ -13,6 +13,7 @@ module.exports = function Tracker() {
     .use(
       require('../sources/id')(),
       require('../sources/timestamp')(),
+      require('../sources/browser/adblock')(),
       require('../sources/browser/color-depth')(),
       require('../sources/browser/do-not-track')(),
       require('../sources/browser/languages')(),

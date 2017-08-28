@@ -58,6 +58,7 @@ function toJSON(method, data, contexts) {
     f_java: bool(features.java),
     f_gears: bool(features.gears),
     f_ag: bool(features.silverlight),
+    f_ab: bool(client.adblock),
     cd: client.colorDepth,
     ds: dimensions(document.size),
     cs: document.charset,
